@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CP</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <style>
+body {
+  background-color: black;
+}
+h1{
+  color: #808080;
+}
+p{
+  color: #008080;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1 class="display-3" style="color:#800080;">Math for Competitive Programming</h1>
+</div>
+<br>
+<div class="container">
+  <h1 class="display-4">1. BigInteger</h1>
+  <p>For e. g.<a href="https://www.geeksforgeeks.org/factorial-large-number/"> Calculating factorials of large numbers</a> (lets say 100) or take large numbers of input around 100000 digits in length. In c++, it is not possible to store these numbers even if we use long long int. One way to take this kind of number is, taking them into an array more wisely use vector … each number will hold an index of array, like if the number is 12345 then 12345%10=5 will in index[4] and the number now=12345/10=1234. now 1234%10=4 will be in [3] and so on to 1%10=1 is in [0], or you can use string too, it is more easy since char array only allow 1 byte for each index so you don’t need those modulation operation to fit number into index.
+Java provides Biginteger class to handle this.</p>
+</div>
+<br>
+<div class="container">
+  <h1 class="display-4">2. <a href="https://www.geeksforgeeks.org/euclidean-algorithms-basic-and-extended/">GCD</a>,<a href="https://www.geeksforgeeks.org/lcm-gq/"> LCM</a>, <a href="https://www.geeksforgeeks.org/euclidean-algorithms-basic-and-extended/">Euclidean Algorithm</a>, <a href="https://www.geeksforgeeks.org/euclidean-algorithms-basic-and-extended/">Extended Euclidean Algorithm</a></h1>
+  <p>The definitions of GCD and LCM are well-known, (and taught in middle school) I will skip the definitions. Also, since lcm(a, b) * gcd(a, b) = a*b, calculating GCD is equivalent to calculating LCM.</p>
+  <p>Now, how do we calculate the GCD of two numbers?
+We can of course find the factors of the two numbers and then determine the highest common factor. As the numbers get bigger though ( say 155566328819), factorization becomes ineffective.</p>
+<p>This is where the Euclid’s algorithm comes to our rescue. This algorithm uses the easy-to-prove fact gcd(a, b)=gcd(b, r), where r is the remainder when a is divided by b, or just a%b.</p>
+<p>Can we find the numbers (x, y) such that ux + vy = gcd(u, v)?. There exists infinitely many pairs – this is Bezout’s Lemma. The algorithm to generate such pairs is called Extended Euclidean Algorithm.</p>
+</div>
+<br>
+<div class="container">
+  <h1 class="display-4" style="color:white;">3.<a href="https://www.geeksforgeeks.org/sieve-of-eratosthenes/"> Sieve of Eratosthenes</a> and <a href="https://www.geeksforgeeks.org/segmented-sieve/">Segmented Sieve</a></h1>
+  <p>Generating primes fast is very important in some problems .Let’s cut to the chase and introduce Eratosthenes’s Sieve. You can use the Sieve of Eratosthenes to find all the prime numbers that are less than or equal to a given number N or to find out whether a number is a prime number.</p>
+  <p>The basic idea behind the Sieve of Eratosthenes is that at each iteration one prime number is picked up and all its multiples are eliminated. After the elimination process is complete, all the unmarked numbers that remain are prime. Suppose we want to find all primes between 2 and 50. Iterate from 2 to 50. We start with 2. Since it is not checked, it is a prime number. Now check all numbers that are multiple of except 2. Now we move on, to number 3. It’s not checked, so it is a prime number. Now check all numbers that are multiple of 3, except 3. Now move on to 4. We see that this is checked – this is a multiple of 2! So 4 is not a prime. We continue doing this.</p>
+  <p>What if the number is large (say 10^16), in that case we require segmented sieve.</p>
+  <p>The idea of<a href="https://www.geeksforgeeks.org/segmented-sieve/"> segmented sieve</a> is to divide the range [0..n-1] in different segments and compute primes in all segments one by one. This algorithm first uses Simple Sieve to find primes smaller than or equal to ?(n). Below are steps used in Segmented Sieve.</p>
+  <p>1. Use Simple Sieve to find all primes up to square root of ‘n’ and store these primes in an array “prime[]”. Store the found primes in an array ‘prime[]’.</p>
+  <p>2. We need all primes in range [0..n-1]. We divide this range in different segments such that size of every segment is at-most ?n</p>
+  <p>3. Do following for every segment [low..high]</p>
+  <p>• Create an array mark[high-low+1]. Here we need only O(x) space where x is number of elements in given range.</p>
+  <p>• Iterate through all primes found in step 1. For every prime, mark its multiples in given range [low..high].</p>
+  <p>In Simple Sieve, we needed O(n) space which may not be feasible for large n. Here we need O(?n) space and we process smaller ranges at a time</p>
+</div>
+<br>
+<div class="container">
+  <h1 class="display-4">4. Modulo arithmetic, <a href="https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/">Modulo exponentiation</a> and<a href="https://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/"> Modulo inverse</a></h1>
+  <p>When one number is divided by another, the modulo operation finds the remainder. It is denoted by the % symbol.</p>
+  <p>Example</p>
+  <p>Assume that you have two numbers 10 and 3. 10%3 is 1 because when 10 is divided by 3, the remainder is 1.</p>
+  <p>Properties</p>
+  <p>1. (a+b)%c = (a%c+b%c)%c</p>
+  <p>2. (a?b)%c = ((a%c)?(b%c))%c</p>
+  <p>3. (a?b)%c = ((a%c)?(b%c)+c)%c</p>
+  <p>4. (a/b)%c = ((a%c)?(d%c))%c</p>
+  <p>Note: In the last property above, d is the multiplicative modulo inverse of b and c.</p>
+  <p>When are these properties used?</p>
+  <p>Assume that a = 10^12, b = 10^12, and c = 10^9+7. You have to find (a?b)%c. When you multiply a with b, the answer is 10^24, which does not conform with the standard integer data types. Therefore, to avoid this we used the properties. (a?b)%c = ((a%c)?(b%c))%c</p>
+  <p>Fast Modulo exponentiation
+Calculate a^b in modular m in O(log b),
+It uses binary expansion of b, and is very straightforward.</p>
+  <p>Now, let us talk about <a href="https://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/">modular inverse</a>.
+By using Extended Euclidean Algorithm, we can get the inverse of a modulo m.</p>
+  <p><a href="https://www.geeksforgeeks.org/fermats-little-theorem/">Fermat’s Little Theorem</a> gives a^(p-1)==a (mod p) if gcd(a, p)=1, where p is a prime. Therefore, we can calculate the modular inverse of a as a^(p-2), by fast exponentiation also.</p>
+</div>
+<br>
+<div class="container">
+  <h1 class="display-4">5. <a href="https://www.geeksforgeeks.org/compute-ncr-p-set-2-lucas-theorem/">Lucas Theorem</a></h1>
+  <p>We can calculate nCr in modulo p (p is a prime) very fast using Lucas’ Theorem. Lucas theorem basically suggests that the value of nCr can be computed by multiplying results of n(i)Cr(i) where n(i) and r(i) are individual same-positioned digits in base p representations of n and r respectively. This is very efficient when p is small and n, r is huge. We can precalculate the factorials and inverse of factorials modulo p by using the above code.</p>
+</div>
+<br>
+<div class="container">
+  <h1 class="display-4">6.<a href="https://www.geeksforgeeks.org/chinese-remainder-theorem-set-1-introduction/">Chinese Remainder Theorem</a></h1>
+  <p>Two numbers (positive integers) a and b are relatively prime (prime to each other), if they have no common prime factors. The numbers m1, m2, ….mr, are pair wise relatively prime if any two distinct numbers in that collection, are relatively prime. Chinese remainder theorem says that given any r pair wise relatively prime numbers m1, m2, ….mr, and any numbers b1, b2, b3, ..br, we can always find a number M which leaves the remainders b1, b2, b3, ..br when it is divided by m1, m2, …mr respectively.</p>
+  <p>Let us solve x == r (mod mi), where mi are pairwise coprime.
+(If they are not coprime, break them into prime powers, and if some are contradictory, there are no solutions.)</p>
+</div>
+<br>
+<div class="container">
+  <h1 class="display-4">7. <a href="https://www.geeksforgeeks.org/mathematics-sequence-series-and-summations/">Series and Sequences</a></h1>
+  <p>You just need to know some basics like :</p>
+  <p>• What is a series and does it converge to some value?</p>
+  <p>• Know about famous series like trigonometric, hyperbolic…etc</p>
+  <p>• How to calculate the finite limit of famous series like ( geometric series, harmonic series)
+and basically the same thing for the sequences, you just need to know the basics.</p>
+<p>(Trick: use <a href="https://oeis.org/A001597">OEIS</a> site)</p>
+  <p>We sometimes land up in a situation when various coding problems can be simplified to a mathematical formula but often finding that formula isn’t that straightforward .Here comes, OEIS for rescue. We can calculate the terms for initial indices i.e n=0, 1, 2, 3, …….. and then may use OEIS to find the mathematical expression.
+</p>
+</div>
+<br>
+<div class="container">
+  <h1 class="display-4">8.<a href="https://www.geeksforgeeks.org/program-nth-catalan-number/">Catalan Numbers</a></h1>
+  <p>Catalan numbers are a sequence of natural numbers that helps to solve many counting problem. Terms starting with n=0 are : 1, 1, 2, 5, 14, 42, 132, 429, 1430 ….and so on.</p>
+  <p>Questions based on catalan number may appear in many coding competitions. So it is always a plus point to know in depth about catalan number.</p>
+  <p>Catalan numbers find extensive applications in forming closed solutions to combinatorics problems. Some of the examples are:</p>
+  <p>1. The number of binary search trees that can be formed using 'n' nodes is the nth Catalan number.</p>
+  <p>2. The number of ways that a convex polygon of n+2 sides, can be cut into 2 or more triangles by joining any 2 edges is the nth Catalan number.</p>
+  <p>3. The closed solution to the number of possible parantheses matching given 'n' pairs is the nth Catalan number.</p>
+</div>
+<br>
+<div class="container">
+  <h1 class="display-4">9.<a href="https://www.geeksforgeeks.org/discrete-mathematics-the-pigeonhole-principle/"> Pigeonhole Principle</a></h1>
+  <p>The pigeonhole principle is a powerful tool used in combinatorial math. But the idea is simple and can be explained by the following peculiar problem. Imagine that 3 pigeons need to be placed into 2 pigeonholes. Can it be done? The answer is yes, but there is one catch. The catch is that no matter how the pigeons are placed, one of the pigeonholes must contain more than one pigeon.</p>
+  <p>The logic can be generalized for larger numbers. The pigeonhole principle states that if more than n pigeons are placed into n pigeonholes, some pigeonhole must contain more than one pigeon. While the principle is evident, its implications are astounding.</p>
+  <p>For example consider this statement “If you pick five numbers from the integers 1 to 8, then two of them must add up to nine.”</p>
+  <p>Explanation: Every number can be paired with another to sum to nine. In all, there are four such pairs: the numbers 1 and 8, 2 and 7, 3 and 6, and lastly 4 and 5.Each of the five numbers belongs to one of those four pairs. By the pigeonhole principle, two of the numbers must be from the same pair–which by construction sums to 9.</p>
+</div>
+<br>
+<div class="container">
+  <h1 class="display-4">10.<a href="https://www.geeksforgeeks.org/inclusion-exclusion-various-applications/">Inclusion Exclusion Principle</a></h1>
+  <p>Inclusion Exclusion principle is a very basic theorem of counting and many problems in various programming contests are based on it, a formal explanation of inclusion exclusion principle goes as follows:</p>
+  <p>Consider A as a collection of objects and |A| as the number of objects in A and similarly for B, then the cardinality of collection of objects of both sets A and B ( when both A and B are disjoint) can be stated as (for 2 finite sets)</p>
+  <p>:</p>
+  <p>|AUB| = |A| + |B|</p>
+  <p>But what if the sets are disjoint?</p>
+  <p>Then we need to subtract the common objects counted twice while calculating the cardinality of both A and B and new form will become:</p>
+  <p>|AUB| = |A| + |B| – |A ∩ B|</p>
+  <p>This is the most basic form of inclusion-exclusion principle.
+But what is there are more than 2 sets, let`s say n sets.</p>
+<p>Then it can be stated as :</p>
+<p>(Include=add, exclude=subtract)</p>
+<p>|A1 U A2 U A3 …..U AN| = (Include count of each set, Exclude count of pairwise set, Include count of triplet sets, exclude count of quadruplet sets……till nth tuple is included( if odd) or excluded( if even))
+i. e., |A1 U A2 U A3 …..U AN| = (|A1| + |A2| + |A3| + |A4| … + |AN|) – ( |A1 ∩ A2| + |A1 ∩ A3| + |A1 ∩ A4|.. + all combinations) + (|A1 ∩ A2 ∩ A3| … all combinations)………. and so on.</p>
+<b><p>This list is not exhaustive but the concepts will be very useful in contests in codeforces, codechef etc.. So grab your pen, paper and laptop and start practicing.</p>
+<b><p>Happy Coding 🙂</p>
+  <
+</div>
+</body>
+</html>
